@@ -10,12 +10,17 @@
       <div *ngFor="let row of widgets; let rowi = index">
         <div class="row">
           <div *ngFor="let widget of row; let coli = index" class="col-sm">
-            <button (click)="reload(rowi, coli)"><fa-icon [icon]="faRedo"></fa-icon></button> {{ widget.title }}
-            <iframe
-              [id]="rowi + '_' + coli"
-              style="width: 100%; height: 50vh"
-              [src]="widget.url | safe: 'resourceUrl'"
-            ></iframe>
+            <button (click)="reload(rowi, coli)"><fa-icon [icon]="faRedo"></fa-icon></button>
+            <button (click)="setscale(rowi, coli)"><fa-icon [icon]="faCompress"></fa-icon></button>
+            {{ widget.title }}
+            <div class="widget">
+              <iframe
+                class="widget"
+                [ngClass]="{ scalehalfsize: widget.scalehalfsize }"
+                [id]="rowi + '_' + coli"
+                [src]="widget.url | safe: 'resourceUrl'"
+              ></iframe>
+            </div>
           </div>
         </div>
       </div>
