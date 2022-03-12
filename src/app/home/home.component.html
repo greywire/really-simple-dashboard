@@ -1,29 +1,40 @@
-<div class="container-fluid">
-  <div class="jumbotron text-center">
-    <h1>
-      <img class="logo" src="assets/ngx-rocket-logo.png" alt="angular logo" />
-      <span translate>Really simple Dashboard</span>
-    </h1>
-    <app-loader [isLoading]="isLoading"></app-loader>
+<app-loader [isLoading]="isLoading"></app-loader>
 
-    <div class="container_fluid dashboard">
-      <div *ngFor="let row of widgets; let rowi = index">
-        <div class="row">
-          <div *ngFor="let widget of row; let coli = index" class="col-sm">
-            <button (click)="reload(rowi, coli)"><fa-icon [icon]="faRedo"></fa-icon></button>
-            <button (click)="setscale(rowi, coli)"><fa-icon [icon]="faCompress"></fa-icon></button>
-            {{ widget.title }}
-            <div class="widget">
-              <iframe
-                class="widget"
-                [ngClass]="{ scalehalfsize: widget.scalehalfsize }"
-                [id]="rowi + '_' + coli"
-                [src]="widget.url | safe: 'resourceUrl'"
-              ></iframe>
-            </div>
-          </div>
+<button type="button" (click)="showDialog()" icon="pi pi-info-circle" label="Show">Edit</button>
+
+<div class="container_fluid dashboard">
+  <div *ngFor="let row of grid; let rowi = index">
+    <div class="row">
+      <div *ngFor="let widget of row; let coli = index" class="col-sm">
+        <button (click)="reload(rowi, coli)" class="smallbutton"><fa-icon [icon]="faRedo"></fa-icon></button>
+        <button (click)="setscale(rowi, coli)" class="smallbutton"><fa-icon [icon]="faCompress"></fa-icon></button>
+        {{ widget.title }} <input type="text" value="{{ widget.url }}" />
+        <div class="widget">
+          <iframe
+            sandbox="allow-scripts allow-forms allow-same-origin"
+            class="widget_frame"
+            [ngClass]="{ scalehalfsize: widget.scalehalfsize }"
+            [id]="rowi + '_' + coli"
+            [src]="widget.url | safe: 'resourceUrl'"
+          ></iframe>
         </div>
       </div>
     </div>
   </div>
 </div>
+
+<!-- Modal -->
+<p-dialog header="Add/Edit widget" [(visible)]="display">
+  <p-dropdown [options]="widgets" [(ngModel)]="selectedWidget" optionLabel="title" optionValue="id"></p-dropdown>
+
+  <span class="p-float-label">
+    <input id="float-input" type="text" pInputText [(ngModel)]="editText" />
+    <label for="float-input">Title</label>
+  </span>
+  <span class="p-float-label">
+    <input id="float-input" type="text" pInputText [(ngModel)]="editURL" />
+    <label for="float-input">URL</label>
+
+    <p-button label="Save" (click)="save()"></p-button>
+  </span>
+</p-dialog>

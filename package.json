@@ -32,7 +32,8 @@
     "generate": "ng generate"
   },
   "dependencies": {
-    "@angular/animations": "~13.1.0",
+    "@angular/animations": "^13.2.0",
+    "@angular/cdk": "^13.2.0",
     "@angular/common": "~13.1.0",
     "@angular/compiler": "~13.1.0",
     "@angular/core": "~13.1.0",
@@ -50,6 +51,8 @@
     "@ngx-translate/core": "^14.0.0",
     "@popperjs/core": "^2.11.0",
     "bootstrap": "^5.0.2",
+    "primeicons": "^5.0.0",
+    "primeng": "^13.1.0",
     "rxjs": "^7.4.0",
     "safe-pipe": "^1.0.4",
     "tslib": "^2.3.0",

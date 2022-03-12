@@ -8,16 +8,28 @@ import { HomeComponent } from './home.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { SafePipeModule } from 'safe-pipe';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { DialogModule } from 'primeng/dialog';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { InputTextModule } from 'primeng/inputtext';
+import { FormsModule } from '@angular/forms';
+import { ButtonModule } from 'primeng/button';
+import { DropdownModule } from 'primeng/dropdown';
 
 @NgModule({
   imports: [
     BrowserModule,
+    FormsModule,
     CommonModule,
     TranslateModule,
     SharedModule,
     HomeRoutingModule,
     SafePipeModule,
     FontAwesomeModule,
+    DialogModule,
+    BrowserAnimationsModule,
+    InputTextModule,
+    ButtonModule,
+    DropdownModule,
   ],
   declarations: [HomeComponent],
 })
